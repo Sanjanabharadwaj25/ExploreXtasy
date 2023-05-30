@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Adventure Planner</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        height: 100vh;
+      }
+    
+      .selection {
+        flex: 1;
+        background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgb(238, 241, 241) 0%,#007bff);
+        padding: 20px;
+        color: #fff;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      select,
+      input[type="range"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        width: 100%;
+        margin: 10px 0;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background: #7462df;
+        cursor: pointer;
+      }
+
+      input[type="range"]::-webkit-slider-runnable-track {
+        height: 3px;
+        background: #fff;
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #7462df;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      #adventure-list {
+        margin-top: 20px;
+        padding-left: 0;
+        list-style: none;
+      }
+
+      .adventure-item {
+        margin-bottom: 10px;
+      }
+
+      .adventure-item label {
+        font-weight: bold;
+      }
+      .adventure-window {
+        flex: 1;
+        background: rgb(34,193,195);
+        background: linear-gradient(0deg, rgb(240, 243, 243) 0%,#007bff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+      }
+    
+      .adventure-popup {
+        max-width: 1000px;
+        margin-top: -190px;
+        padding: 5px;
+        background-color: rgb(239, 246, 247);
+        border-radius: 10px;
+        text-align: center;
+        display: none;
+      }
+    
+      .adventure-popup h2 {
+        margin-top: 0;
+      }
+    
+      .adventure-popup p {
+        margin-bottom: 20px;
+      }
+    
+      .adventure-popup img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    
+      .adventure-popup button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #7462df;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #days-input {
+        display: block;
+        margin-bottom: 10px;
+        width: 98%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      .timeline {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        padding: 10px;
+        box-shadow: 0px -2px 6px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        overflow-x: auto;
+      }
+
+      .timeline-bar {
+        margin-top: 50px;
+       margin-bottom:100px ;
+        position: relative;
+        height: 20px;
+        background-color: #ccc;
+        border-radius: 5px;
+        width:70%;
+        
+      }
+
+      .timeline-marker {
+        position: absolute;
+        top: -5px;
+        width: 10px;
+        height: 20px;
+        background-color: #007bff;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+      }
+      .marker-text {
+        display: block;
+        white-space: nowrap;
+      }
+      
+      
+     
+    </style>
+</head>
+<body>
+  <div class="container">
+    <div class="selection">
+      <h1>Adventure Planner</h1>
+      <form id="adventure-form">
+        <label for="continent">Continent:</label>
+        <select id="continent" required>
+          <option value="">Select Continent</option>
+          <option value="North America">North America</option>
+          <option value="South America">South America</option>
+          <option value="Europe">Europe</option>
+          <option value="Asia">Asia</option>
+          <option value="Africa">Africa</option>
+          <option value="Oceania">Oceania</option>
+          <option value="Antarctica">Antarctica</option>
+        </select>
+        <br><br>
+        <label for="country">Country:</label>
+        <select id="country" required>
+          <option value="">Select Country</option>
+        </select>
+        <br><br>
+        <label for="state">State:</label>
+        <select id="state" required>
+          <option value="">Select State</option>
+        </select>
+  
+       <br><br>
+    <label for="days">Number of Days:</label>
+    <input type="number" id="days-input" required min="1" max="10" step="1" />
+  
+        <button type="submit">Plan Adventures</button>
+      </form>
+   </div>
+  
+    <div class="adventure-window">
+      <div class="adventure-popup" id="adventure-popup">
+        <h2 id="adventure-title"></h2>
+        <img src="one.jpg" alt="Adventure Image" id="adventure-image" />
+        <p id="adventure-description"></p>
+        <button id="prev-button" class="arrow-button" disabled>&lt;</button>
+        <button id="next-button" class="arrow-button" disabled>&gt;</button>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    var continentSelect = document.getElementById("continent");
+    var countrySelect = document.getElementById("country");
+    var stateSelect = document.getElementById("state");
+    var form = document.getElementById("adventure-form");
+  
+    continentSelect.addEventListener("change", function () {
+      var continent = this.value;
+      updateCountryOptions(continent);
+    });
+  
+    countrySelect.addEventListener("change", function () {
+      var continent = continentSelect.value;
+      var country = this.value;
+      updateStateOptions(continent, country);
+    });
+  
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      var continent = continentSelect.value;
+      var country = countrySelect.value;
+      var state = stateSelect.value;
+      var days = parseInt(document.getElementById("days-input").value);
+  
+      var adventures = getDummyAdventures(continent, country, state, days);
+  
+      displayAdventures(adventures);
+    });
+  
+    function updateCountryOptions(continent) {
+      var countryOptions = getCountriesByContinent(continent);
+      populateSelect(countrySelect, countryOptions);
+      stateSelect.innerHTML = "<option value=''>Select State</option>";
+    }
+  
+    function updateStateOptions(continent, country) {
+      var stateOptions = getStatesByCountry(continent, country);
+      populateSelect(stateSelect, stateOptions);
+    }
+  
+    function populateSelect(selectElement, options) {
+      selectElement.innerHTML = "";
+      options.forEach(function (option) {
+        var optionElement = document.createElement("option");
+        optionElement.value = option;
+        optionElement.textContent = option;
+        selectElement.appendChild(optionElement);
+      });
+    }
+  
+    function getCountriesByContinent(continent) {
+      // Replace this with actual logic to fetch countries based on the selected continent
+      // Here, we'll provide some dummy country data for demonstration purposes
+      var countries = [];
+  
+      if (continent === "North America") {
+        countries = ["Canada", "United States", "Mexico"];
+      } else if (continent === "South America") {
+        countries = ["Brazil", "Argentina", "Colombia"];
+      } else if (continent === "Europe") {
+        countries = ["France", "Germany", "Italy"];
+      } else if (continent === "Asia") {
+        countries = ["China", "India", "Japan"];
+      } else if (continent === "Africa") {
+        countries = ["South Africa", "Egypt", "Kenya"];
+      } else if (continent === "Oceania") {
+        countries = ["Australia", "New Zealand", "Fiji"];
+      } else if (continent === "Antarctica") {
+        countries = ["Antarctica"];
+      }
+  
+      return countries;
+    }
+  
+    function getStatesByCountry(continent, country) {
+      // Replace this with actual logic to fetch states based on the selected country
+      // Here, we'll provide some dummy state data for demonstration purposes
+      var states = [];
+  
+      if (continent === "North America" && country === "United States") {
+        states = ["California", "Florida", "New York"];
+      } else if (continent === "Europe" && country === "France") {
+        states = ["Île-de-France", "Provence-Alpes-Côte d'Azur", "Occitanie"];
+      } else if (continent === "Asia" && country === "India") {
+        states = ["Maharashtra", "Karnataka", "Tamil Nadu"];
+      }
+  
+      return states;
+    }
+  
+    function getDummyAdventures(continent, country, state, days) {
+      // This function should be replaced with actual logic to fetch adventures based on the selected location and days
+      // Here, we'll provide some dummy adventure data for demonstration purposes
+      var adventures = [];
+  
+      for (var i = 1; i <= days; i++) {
+        adventures.push({
+          title: "Adventure " + i,
+          description: "This is the description of Adventure " + i,
+        });
+      }
+  
+      return adventures;
+    }
+  
+    function displayAdventures(adventures) {
+      var adventurePopup = document.getElementById("adventure-popup");
+      var adventureTitle = document.getElementById("adventure-title");
+      var adventureImage = document.getElementById("adventure-image");
+      var adventureDescription = document.getElementById(
+        "adventure-description"
+      );
+      var prevButton = document.getElementById("prev-button");
+      var nextButton = document.getElementById("next-button");
+  
+      var currentIndex = 0;
+      var totalAdventures = adventures.length;
+  
+      updateAdventure();
+  
+      adventurePopup.style.display = "block";
+  
+      prevButton.addEventListener("click", function () {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateAdventure();
+        }
+      });
+  
+      nextButton.addEventListener("click", function () {
+        if (currentIndex < totalAdventures - 1) {
+          currentIndex++;
+          updateAdventure();
+        }
+      });
+  
+      function updateAdventure() {
+        var adventure = adventures[currentIndex];
+  
+        adventureTitle.textContent = adventure.title;
+        adventureDescription.textContent = adventure.description;
+        adventureImage.src = "one.jpg";
+  
+        prevButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === totalAdventures - 1;
+      }
+      
+      var timelineBar = document.querySelector('.timeline-bar');
+
+      for (var i = 0; i < totalAdventures; i++) {
+        var marker = document.createElement('div');
+        marker.className = 'timeline-marker';
+        marker.style.left = (i / totalAdventures * 100) + '%';
+      
+        var markerText = document.createElement('span');
+        markerText.className = 'marker-text';
+        markerText.textContent = 'Day ' + (i + 1) + '  |  Adventure ' + (i + 1);
+      
+        marker.appendChild(markerText);
+        timelineBar.appendChild(marker);
+      }
+      
+
+    }
+  </script>
+  <div class="timeline">
+    <div class="timeline-bar">
+      <!-- You can dynamically generate timeline markers using JavaScript -->
+      <!-- Example: <div class="timeline-marker" style="left: 20%;"></div> -->
+    </div>
+  </div>
+</body>
+</html>      

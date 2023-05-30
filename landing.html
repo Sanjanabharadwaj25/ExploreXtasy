@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>ExploreXtasy</title>
+    <style>
+        /* Basic styling */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Nunito",sans-serif !important;
+        }
+        header {
+            height: 100vh;
+            background: url(bg1.jpg) fixed;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+        .gif-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .content {
+            position: relative;
+            z-index: 1;
+        }
+        nav {
+            background: #333;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            z-index: 999;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 10px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <section id="hero">
+            <div class="hero-content">
+                <h2 class="slide-in">Welcome to ExploreXtasy</h2>
+                <h1 class="slide-from-left">Where life is meant to be lived to the fullest.</h1>
+            </div>
+        </section>
+    </header>
+    <style>
+    @keyframes slideInAnimation {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromLeftAnimation {
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideInAnimation 1s ease-in;
+}
+
+.slide-from-left {
+    animation: slideFromLeftAnimation 1s ease-in;
+}
+
+</style>
+    
+    <nav>
+        <ul>
+            <li><a href="#explore">Explore</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#plan-activity">Plan Activity</a></li>
+            <li><a href="#blogs">Blogs</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+    </nav>
+
+    <section id="explore">
+        <div class="explore-content">
+            <h2 style="color: black;">Explore</h2>
+            <div class="explore-buttons">
+                <button class="explore-button"><a href="activity.html" >View Activites</a></button>
+                <button class="explore-button"><a href="dummy.html">Explore</a></button>
+                <button class="explore-button">Gallery</button>
+            </div>
+        </div>
+    </section>
+<style>
+    #explore {
+    background-image: url('exp-bg.jpg'); /* Replace with your background image */
+    background-size: cover;
+    position: relative;
+}
+
+.explore-content {
+    padding: 40px;
+    text-align: center;
+    color: #fff;
+}
+
+.explore-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    
+    
+}
+.explore-button a{
+    text-decoration: none;
+    color: #fff;
+}
+
+.explore-button {
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    
+}
+
+.explore-button:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.explore-button:focus {
+    outline: none;
+}
+
+</style>    
+
+    <section id="about">
+        <div class="content"><br><br><br>
+            <h2>About ExploreXtasy</h2>
+            <p>Welcome to ExploreXtasy, where the thrill begins and unforgettable memories are made! We are passionate about helping you embark on incredible adventures that will leave you breathless and craving for more.</p>
+            <p>At ExploreXtasy, we understand that life is meant to be lived to the fullest. That's why we've created a platform that brings together adventure seekers, adrenaline junkies, and outdoor enthusiasts from all walks of life.</p>
+            <p>Our mission is to provide you with a seamless and exhilarating experience in planning your next adventure. Whether you're into hiking, rock climbing, skydiving, or exploring the depths of the ocean, we've got you covered.</p>
+            <p>With ExploreXtasy, you can discover thrilling destinations, connect with experienced guides, and join a vibrant community of like-minded adventurers who share your passion for exploring the world's most breathtaking landscapes.</p>
+    <br>
+            <p>Get ready to push your boundaries, conquer new challenges, and create memories that will last a lifetime. Join ExploreXtasy today and let the adventure begin!</p>
+        </div>
+    </section>
+    <style>
+        #about {
+            background-color: #f9f9f9;
+            padding: 80px 0;
+        }
+    
+        #about .content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    
+        #about h2 {
+            font-size: 36px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+    
+        #about p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+    
+        #about ul {
+            list-style-type: disc;
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+    
+        #about ul li {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 10px;
+            line-height: 1.5;
+            list-style: none    ;
+        }
+    
+        #about p:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+        <br>
+        <br>
+        
+    
+<h2 style="text-align: center; font-weight: bold;">Testimonials</h2>
+    <section class="testimonial-section">
+        
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="testimonial-1.png" class="d-block">
+                </div>
+                <div class="carousel-item" data-bs-interval="2000">
+                    <img src="testimonial-2.png" class ="d-block">
+                    
+                </div>
+                <div class="carousel-item">
+                    <img src="testimonial-1.png" class="d-block">
+                    
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+</body>
+
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</html>

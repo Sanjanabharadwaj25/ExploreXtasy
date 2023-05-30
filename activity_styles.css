@@ -1,0 +1,86 @@
+body {
+    font-family: "Nunito",sans-serif !important;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  h1 {
+    margin: 20px 0;
+    font-size:2rem ;
+    font-weight:100;
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  h3{
+    text-align: center;
+    font-size: 1.5rem !important;
+    padding-top: 20px;
+  }
+  
+  #activity-list {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 140px;
+    align-items: center !important;
+    
+  }
+  
+  .activity-button {
+    background-color: #fefefe !important;
+    color: #3e90ed !important;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    align-items: center !important;
+    cursor: pointer;
+    margin: 20px !important;
+    border-radius: 20px !important;
+    
+  }
+  .activity-button:hover{
+    color: #fefefe !important;
+    background-color: #3e90ed !important;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 10px;
+    
+  }
+  
+  
+  #activity-container {
+    margin-top: 20px;
+  }
+  
+  .activity-gif {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .related-activities {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .draggable {
+    cursor: move;
+  }
+  
+  .dropzone {
+    border: 2px dashed #ccc;
+    height: 100px;
+    margin-top: 10px;
+  }
+  
+  .occupied {
+    background-color: #f2f2f2;
+    border-color: #333;
+  }
+  
+  .dropped {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
